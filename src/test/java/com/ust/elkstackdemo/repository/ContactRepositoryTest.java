@@ -4,9 +4,12 @@ import com.ust.elkstackdemo.model.Contact;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class ContactRepositoryTest {
     /**
      * Test cases to be generated
@@ -43,6 +46,7 @@ class ContactRepositoryTest {
      * 4. Ensure code coverage of the ContactRepository class is 100%.
      */
 
+    @Autowired
     ContactRepository contactRepository;
     Contact validContact, contactWithNullName
             , contactWithEmptyName, contactWithNullPhoneNumber
@@ -50,7 +54,7 @@ class ContactRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        contactRepository = new ContactRepository();
+//        contactRepository = new ContactRepository(); // not needed because of @Autowired and @SpringBootTest
         validContact = new Contact("John Doe", "john.doe", "1234567890");
         contactWithNullName = new Contact(null, "john.doe", "1234567890");
         contactWithEmptyName = new Contact("", "john.doe", "1234567890");
